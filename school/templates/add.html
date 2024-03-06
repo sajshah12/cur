@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block text  %}
+<div class="row">
+    <div class="col-sm-6">
+        <h1 class="alert alert-success text-center "> add student</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p}}
+            <input type="submit" value="add" class="alert alert-success">
+
+        </form>
+
+    </div>
+    <div class="col sm-6">
+        <h1 class="alert alert-success text-center"> show student</h1>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Password</th>
+                <th scope="col">actions</th>
+              </tr>
+            </thead>
+
+
+            <tbody>
+               {% for i in yu %}
+               <tr>
+                <th scope="row">{{i.id}}</th>
+                <td>{{i.name}}</td>
+                <td>{{i.email}}</td>
+                <td>{{i.password}}</td>
+                <td>
+                  <form action="{% url 'delete' i.id %}" method="POST">
+                     <a href="{% url 'update' i.id%}" class="btn btn-info">edit</a>
+
+                    {% csrf_token %}
+                    <input type="submit" value="delete"  class="btn btn-danger">
+
+                  </form>  
+                    
+                  </form>
+              </td>
+               </tr>
+                
+              {% endfor %}
+     </div>
+
+</div>
+
+
+
+
+
+
+{% endblock text  %}
+
+
