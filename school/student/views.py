@@ -28,15 +28,21 @@ def delete(request, id):
 
 
 
-#  update student information
+#  update student informatio
+
+
 def update(request,id):
-    if request.method.get():
-        yu= Info.objects.get(pk=id)
-        yum=InfoForm(request.POST,instance=yu)
-        if yum.is_valid():
-            yum.save()
-            yum=InfoForm()
-    else:
-        yu=Info.objects.get(pk=id)
-        yum=InfoForm(instance=yu)
-    return render(request,'update.html',{'form':yu})
+    if request.method == 'POST':
+        sm = Info.objects.get(pk=id)
+        ym =InfoForm(request.post,isinstance=sm)
+        if ym.is_valid():
+            ym.save()
+            ym = InfoForm()
+
+        else:
+            sm = Info.objects.get(pk=id)
+            ym = InfoForm(instance=sm)
+    return render(request,'update.html',{'form':ym})
+
+
+
